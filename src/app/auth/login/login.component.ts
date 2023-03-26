@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { UserService } from '../user.service';
 
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private userService: UserService
+    private userService: UserService,
+    private route: Router
   ) {}
 
   ngOnInit(): void {}
@@ -26,10 +28,12 @@ export class LoginComponent implements OnInit {
     const user = this.loginForm.value;
 
     this.authService.login(user).subscribe((res: any) => {
-      console.log(res);
       console.log(res.payload.user);
       if (res.success) {
         this.userService.setCurrentUser(res.payload.user);
+        this.route.navigate(['/home']);
+        this.authService.setToken(res.payload.token);
+        console.log(res);
       }
     });
   }
