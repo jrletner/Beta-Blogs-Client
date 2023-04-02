@@ -49,7 +49,7 @@ export class AuthService {
         if (res.success) {
           this.userService.setCurrentUser(res.payload.user);
           console.log(res);
-          this.route.navigate(['/home']);
+          //this.route.navigate(['/home']);
         }
       });
   }
