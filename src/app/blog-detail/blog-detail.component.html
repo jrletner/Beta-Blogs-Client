@@ -9,7 +9,12 @@
       </span>
     </div>
     <div class="my-3">
-      <span>Posted by {{ creator.username }}</span>
+      <span
+        >Posted by
+        <a style="color: white" routerLink="/profile/{{ creator.username }}">{{
+          creator.username
+        }}</a></span
+      >
     </div>
   </div>
 </header>
